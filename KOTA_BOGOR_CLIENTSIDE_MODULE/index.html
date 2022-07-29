@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupiter Hitter</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+    <audio id="myAudio">
+
+        <source src="./assets/audio/bg.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+    <div id="app">
+        <div id="start-game" class="start-game">
+            <div class="cards">
+                <div class="card-body d-flex justify-content-center w-100 h-100 text-white" style="align-items:center;">
+                    <center>
+                        <h1>
+                            Jupiter Hitter
+                        </h1>
+                        <p>Beat the opponnent and conquer jupiter !</p>
+                        <input type="text" name="name-player" id="name-player" class="form-control">
+                        <br>
+                        <button onclick="startGame()" class="btn btn-outline-warning start-games">
+                            START GAME
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div id="main-game" class="main-game">
+            <center>
+                <div class="times text-white position-absolute" style="font-size:25px;z-index: 9999;">
+                    <h3>Time</h3>
+                    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+                    <button id="button-start" style="display: none;">Start</button>
+                </div>
+            </center>
+            <div id="game">
+                <div class="score">
+                    <div class="card">
+                        <div class="card-header">
+                            <center>
+                                BOT 3
+                            </center>
+                            <div class="card-body hp" id="hp-ply-bot3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning">Stop Game</button>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>
+                                BOT 2
+                            </center>
+                            <div class="card-body hp" id="hp-ply-bot2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="plays-area">
+                    <div id="player-area">
+                        <div>
+                            <img class="ply bot3" src="assets/img/bot3.png" alt="" srcset="">
+                            <img id="botme" class="ply bot4" src="assets/img/bot2.png" alt="" srcset="">
+                        </div>
+                        <div>
+                            <img id="" class="ply bot2" src="assets/img/bot1.png" alt="" srcset="">
+                            <img class="ply bot1" src="assets/img/bot1.png" alt="" srcset="">
+                        </div>
+                    </div>
+                </div>
+                <div id="planet">
+                    <img src="assets/img/ball.png" id="ball" class="ball" alt="">
+                    <img src="assets/img/jupiter.png" alt="" srcset="">
+                </div>
+                <div class="score-right">
+                    <div class="card">
+                        <div id="me" class="card-header me text-center">
+
+                        </div>
+                        <div class="card-body hp" id="hp-ply-bot4">
+
+                        </div>
+                    </div>
+
+                    <button class="btn btn-warning">Pause</button>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>
+
+                                BOT 1
+                            </center>
+                            <div class="card-body hp" id="hp-ply-bot1">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <script src="./hitter.js"></script>
+</body>
+
+</html>

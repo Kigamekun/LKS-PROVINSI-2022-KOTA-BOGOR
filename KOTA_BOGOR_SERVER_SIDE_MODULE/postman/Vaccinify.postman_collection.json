@@ -1,0 +1,775 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Vaccinify",
+		"_postman_id": "b31180b9-2cbd-9ea5-ce2f-6228ca1a1d0f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticaiton",
+			"description": "",
+			"item": [
+				{
+					"name": "A1a - Login success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    pm.environment.set(\"token\", jsonData.token);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/api/v1/auth/login",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_card_number",
+									"value": "{{id_card_number}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A1b - Login failed",
+					"request": {
+						"url": "{{url}}/api/v1/auth/login",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id_card_number",
+									"value": "{{id_card_number}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "wrongpass",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A1c - Logout success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/auth/logout?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A1d - Logout failed",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/auth/logout?token=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request Consultation",
+			"description": "",
+			"item": [
+				{
+					"name": "A2a - Request consultation success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/consultations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "disease_history",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "current_symptoms",
+									"value": "pregnant",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A2b - Request consultation invalid token",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/consultations?token=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "disease_history",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "current_symptoms",
+									"value": "pregnant",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get the consultation",
+			"description": "",
+			"item": [
+				{
+					"name": "A2c - Get consultation success",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8000/api/v1/consultations?token={{token}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A2d - Get consultation invalid token",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8000/api/v1/consultations?token=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"consultations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all spots by region",
+			"description": "",
+			"item": [
+				{
+					"name": "A3a - Get all spots success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/spots?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"spots"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A3b - Get all spots invalid token",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/spots?token=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"spots"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get detail spot",
+			"description": "",
+			"item": [
+				{
+					"name": "A3c - Get detail spot success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/spots/{{spot_id}}?token={{token}}&date={{date}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"spots",
+								"{{spot_id}}"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A3d - Get detail spot invalid token",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/spots/{{spot_id}}?token=&date={{date}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"spots",
+								"{{spot_id}}"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								},
+								{
+									"key": "date",
+									"value": "{{date}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register vaccination",
+			"description": "",
+			"item": [
+				{
+					"name": "A4a - Register vaccination success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2021-12-25",
+									"type": "text"
+								},
+								{
+									"key": "spot_id",
+									"value": "{{spot_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4b - Register vaccination invalid token",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2021-12-25",
+									"type": "text"
+								},
+								{
+									"key": "spot_id",
+									"value": "{{spot_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4c - If the society consultation hasn’t accepted by doctor",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2021-12-25",
+									"type": "text"
+								},
+								{
+									"key": "spot_id",
+									"value": "{{spot_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4d - Invalid field",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "01-10-2021",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4e - If 2nd vaccination less than 30 days from 1st vaccination",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2021-12-25",
+									"type": "text"
+								},
+								{
+									"key": "spot_id",
+									"value": "{{spot_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4f - If have been 2x vaccinated",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2021-12-25",
+									"type": "text"
+								},
+								{
+									"key": "spot_id",
+									"value": "{{spot_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get all vaccinations",
+			"description": "",
+			"item": [
+				{
+					"name": "A4g - Get all vaccinations success",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token={{token}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "A4h - Get all vaccinations invalid token",
+					"request": {
+						"url": {
+							"raw": "{{url}}/api/v1/vaccinations?token=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vaccinations"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
